@@ -28,10 +28,16 @@ Route::get('auth/{provider}', 'AuthSocController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'AuthSocController@handleProviderCallback');
 
 Route::group(['middleware' => 'role:super-admin'], function() {
-    Route::resource('admin/permission', 'Admin\\PermissionController');
-    Route::resource('admin/role', 'Admin\\RoleController');
-    Route::resource('admin/user', 'Admin\\UserController');
-    Route::get('/admin','Admin\\AdminController@index');
+
+    Route::resource('category', 'Admin\CategoryController');
+	Route::resource('product','Admin\ProductController');
+
+
 });
 
-Route::resource('products','ProductController');
+Route::resource('admin/permission', 'Admin\\PermissionController');
+Route::resource('admin/role', 'Admin\\RoleController');
+Route::resource('admin/user', 'Admin\\UserController');
+Route::get('/admin','Admin\\AdminController@index');
+
+

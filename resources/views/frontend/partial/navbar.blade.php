@@ -1,9 +1,9 @@
 
 <header id="header">
-    <span class="logo"><a href="index.html">Bambino</a></span>
+    <span class="logo"><a href="{{url('/home')}}">Bambino</a></span>
     <div class="tools-nav_holder">
         <ul class="tools-nav">
-            <li><a href="#">My account</a></li>
+            <li><a href="#">{!! Auth::user()->name !!}</a></li>
             <li class="login"><a href="{{ route('logout') }}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a></li>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

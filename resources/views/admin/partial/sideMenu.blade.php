@@ -50,24 +50,24 @@
                 {{--<span class="menu-title">Form elements</span>--}}
             {{--</a>--}}
         {{--</li>--}}
-        {{--<li class="nav-item">--}}
-            {{--<a class="nav-link" href="pages/charts/chartjs.html">--}}
-                {{--<i class="menu-icon mdi mdi-chart-line"></i>--}}
-                {{--<span class="menu-title">Charts</span>--}}
-            {{--</a>--}}
-        {{--</li>--}}
+        <li class="nav-item">
+            <a class="nav-link" href="/category">
+                <i class="menu-icon mdi mdi-table"></i>
+                <span class="menu-title">Categories</span>
+            </a>
+        </li>
         {{--<li class="nav-item">--}}
             {{--<a class="nav-link" href="pages/tables/basic-table.html">--}}
                 {{--<i class="menu-icon mdi mdi-table"></i>--}}
                 {{--<span class="menu-title">Tables</span>--}}
             {{--</a>--}}
         {{--</li>--}}
-        {{--<li class="nav-item">--}}
-            {{--<a class="nav-link" href="pages/icons/font-awesome.html">--}}
-                {{--<i class="menu-icon mdi mdi-sticker"></i>--}}
-                {{--<span class="menu-title">Icons</span>--}}
-            {{--</a>--}}
-        {{--</li>--}}
+        <li class="nav-item">
+            <a class="nav-link" href="/product">
+                <i class="menu-icon mdi mdi-sticker"></i>
+                <span class="menu-title">Products</span>
+            </a>
+        </li>
         {{--<li class="nav-item">--}}
             {{--<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">--}}
                 {{--<i class="menu-icon mdi mdi-restart"></i>--}}

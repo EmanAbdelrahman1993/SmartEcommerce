@@ -47,15 +47,18 @@
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
+
+
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Login') }}
+                            </button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-12 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+                            <div class="col-md-12 offset-md-3">
+
                             </br>
                                 <a href="{{ url('auth/google') }}" class="btn btn-danger">Login With Google</a>
                                 <a href="{{ url('auth/facebook') }}" class="btn btn-primary">Login With Facebook</a>

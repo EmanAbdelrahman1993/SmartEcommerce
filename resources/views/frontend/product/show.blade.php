@@ -26,14 +26,15 @@
                     <h2>{{$product->price}}</h2>
                 </div>
                 <div class="section">
-                    <form class="form-sort page" action="{{url('add_to_cart/'.$product->id)}}">
+                    <form class="form-sort page" action="{{url('add_to_cart/'.$product->id)}}" method="post">
+                        @csrf
                         <fieldset>
                             <div class="row">
                                 <label for="page">Quantity:</label>
                                 <input type="number" name="quantity" class="form-control" min="1" max="10">
                                 <div class="clear"></div>
                             </div>
-                            <input type="submit" value="Add to cart" class="btn pink" />
+                            <input type="submit" value="Add To Cart" class="btn pink" />
                         </fieldset>
                     </form>
                 </div>

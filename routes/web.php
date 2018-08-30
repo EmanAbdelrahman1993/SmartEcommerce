@@ -51,8 +51,8 @@ Route::resource('products', 'frontend\ProductController');
 Route::post('/order', 'OrderController@orderNow');
 Route::get('/order_details', 'OrderController@orderDetails');
 Route::get('/viewOrders', 'frontend\UserController@viewOrders');
-Route::get('/cart', 'UserController@view_cart');
-Route::post('/add_to_cart/{id}/', 'UserController@add_to_cart');
+Route::get('/cart', 'frontend\UserController@view_cart');
+Route::post('/add_to_cart/{id}', 'frontend\UserController@add_to_cart');
 
 
 

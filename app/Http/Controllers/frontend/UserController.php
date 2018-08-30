@@ -4,6 +4,8 @@ namespace App\Http\Controllers\frontend;
 
 use App\User;
 use App\Order;
+use App\Product;
+use Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -68,33 +70,33 @@ class UserController extends Controller
 
         }
 
-
         return view('frontend.cart')->with('carts',$carts);
 
     }
-    public function add_to_cart(Request $request,$id)
+    public function add_to_cart(Request $request , $id)
     {
         //session()->put('cart', []);
-        //dd('llllllllll');
         $product = Product::find($id);
-        //dd($product);
         $qty = $request->quantity;
-        //$user_id = auth()->user()->id;
 
-        $size = $product->size;
         $price= $product->price;
 
         $total_price = $price * $qty;
 
-        $data =[$product->id , $qty , $size , $price , $total_price];
-        //dd($data);
+        $has_points = $product->has_points;
 
+        $total_has_points = $has_points * $qty;
+
+        $replacement_points = $product->replace_points;
+
+        $total_replacement_points = $replacement_points * $qty;
+
+        $data =[$product->id , $qty  , $price , $total_price , $total_has_points , $total_replacement_points];
+        //dd($data);
 
         session()->push('cart', $data);
 
-
-        return redirect('User/cart');
-
+        return redirect('/cart');
     }
 
     public function viewOrders()

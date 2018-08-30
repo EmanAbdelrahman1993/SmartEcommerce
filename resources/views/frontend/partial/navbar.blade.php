@@ -13,7 +13,7 @@
         </ul>
         <div class="checkout">
             <span>3 products, <span class="pink">$380,50</span></span>
-            <a href="cart.html" class="btn btn_checkout">Checkout</a>
+            <a href="{{url('/cart')}}" class="btn btn_checkout">Checkout</a>
         </div>
     </div>
     <div class="clear"></div>
@@ -32,7 +32,7 @@
             </li>
             <li><a href="{{url('/products')}}">Our collection</a></li>
             <li><a href="products.html">Top products </a></li>
-            <li><a href="products.html">Best sellers</a></li>
+            <li><a href="{{url('/cart')}}">Your Cart</a></li>
             <li><a href="products.html">Gifts</a></li>
             <li><a href="products.html">Promotions</a></li>
         </ul>

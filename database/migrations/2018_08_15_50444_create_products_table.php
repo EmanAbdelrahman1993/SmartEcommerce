@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id')->unsigned();
-            $table->integer('member_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->text('description');
             $table->string('price');
@@ -24,15 +24,14 @@ class CreateProductsTable extends Migration
             $table->integer('replace_points');
             $table->string('country_made');
             $table->smallInteger('status')->default(0);
-            $table->smallInteger('Rating')->default(0);
-            $table->smallInteger('approve')->default(0);
+            $table->smallInteger('rating')->default(0);
             $table->string('tags')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
 
 
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('member_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
         });
     }

@@ -1,10 +1,9 @@
-@extends('admin.main')
-
-@section('title', 'Manage Comment')
+@extends('admin.master')
 @section('content')
 
-<h1 class="text-center">Edit Comment</h1>
-<div class="container">
+
+    <h1 class="text-center">Edit Comment</h1>
+    <div class="container">
 
     <form class="form-horizontal" action="{{ route('comment.update', $comment->id) }}" method="POST">
         {{ csrf_field() }}

@@ -44,12 +44,7 @@
 
             </div>
         </li>
-        {{--<li class="nav-item">--}}
-            {{--<a class="nav-link" href="pages/forms/basic_elements.html">--}}
-                {{--<i class="menu-icon mdi mdi-backup-restore"></i>--}}
-                {{--<span class="menu-title">Form elements</span>--}}
-            {{--</a>--}}
-        {{--</li>--}}
+
         <li class="nav-item">
             <a class="nav-link" href="/category">
                 <i class="menu-icon mdi mdi-table"></i>
@@ -68,6 +63,21 @@
                 <span class="menu-title">Products</span>
             </a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/comment">
+                <i class="menu-icon mdi mdi-backup-restore"></i>
+                <span class="menu-title">Comments</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/order">
+                <i class="menu-icon mdi mdi-checkbox-marked-circle"></i>
+                <span class="menu-title">Orders</span>
+            </a>
+        </li>
+
         {{--<li class="nav-item">--}}
             {{--<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">--}}
                 {{--<i class="menu-icon mdi mdi-restart"></i>--}}

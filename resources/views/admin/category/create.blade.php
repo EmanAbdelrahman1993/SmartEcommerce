@@ -8,7 +8,7 @@
         <div class="form-group form-group-lg">
             <label class="col-sm-2 control-label">Name</label>
             <div class="col-sm-10 col-md-6">
-                <input type="text" name="name" class="form-control" autocomplete="off" required="required" placeholder="Name Of The Category" />
+                <input type="text" name="name" class="form-control" value="{{old('name')}}" autocomplete="off" required="required" placeholder="Name Of The Category" />
             </div>
         </div>
         <!-- End Name Field -->
@@ -16,7 +16,7 @@
         <div class="form-group form-group-lg">
             <label class="col-sm-2 control-label">Description</label>
             <div class="col-sm-10 col-md-6">
-                <input type="text" name="description" class="form-control" placeholder="Describe The Category" />
+                <input type="text" name="description" value="{{old('description')}}" class="form-control" placeholder="Describe The Category" />
             </div>
         </div>
         <!-- End Description Field -->

@@ -17,8 +17,7 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::all();
-
-        return view('admin.content.comment.index', compact('comments'));
+        return view('admin.comment.index')->with('comments',$comments);
     }
 
     /**
@@ -43,7 +42,7 @@ class CommentController extends Controller
 
         $this->validate($request, array(
             'comment' => 'required|string',
-            'item_id' => 'required',
+            'product_id' => 'required',
         ));
 
         // Store in the database
@@ -51,14 +50,14 @@ class CommentController extends Controller
 
         $comment->comment = $request->comment;
         $comment->user_id = Auth::user()->id;
-        $comment->item_id = $request->item_id;
+        $comment->product_id = $request->product_id;
         $comment->status = 0;
 
 
         $comment->save();
 
         Session::flash('success', 'the Comment was successfully Save!');
-        return redirect('/admin/item');
+        return redirect('product');
 
     }
 
@@ -102,8 +101,36 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        $comment->delete();
+        Session::flash('success', 'The Comment was successfully deleted.');
+        return redirect('/comment');
+
+    }
+
+    public function approve($id)
+    {
+        $comment = Comment::find($id);
+        //dd($comment);
+        $comment->status = 1;
+        $comment->save();
+
+        Session::flash('success', 'Comment Status was successfully Approved.');
+        return redirect('/comment');
+
+    }
+
+    public function close($id)
+    {
+        $comment = Comment::find($id);
+        //dd($comment);
+        $comment->status = 0;
+        $comment->save();
+
+        Session::flash('success', 'Comment Status was successfully Closed.');
+        return redirect('/comment');
+
     }
 }

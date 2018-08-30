@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use App\Product;
+use App\Category;
+use App\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +19,12 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $users = User::all()->count();
+        $products = Product::all()->count();
+        $categories = Category::all()->count();
+        $comments = Comment::all()->count();
+
+        return view('admin.index')->with(['users'=>$users , 'products'=>$products , 'categories'=>$categories , 'comments'=>$comments ]);
     }
 
     /**

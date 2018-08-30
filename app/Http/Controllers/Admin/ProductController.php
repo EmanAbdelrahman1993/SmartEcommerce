@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Product;
+use App\User;
 use Session;
 use Illuminate\Http\Request;
 
@@ -32,8 +33,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $category = Category::all();
-        return view('admin.product.create')->with('category',$category);
+        $users = User::all();
+        $categories = Category::where('parent', '=', 0)->get();
+        $childCategories = Category::where('parent', '!=', 0)->get();
+
+        return view('admin.product.create')->with(['categories'=>$categories ,'childCategories'=>$childCategories, 'users' => $users]);
     }
 
 
@@ -45,13 +49,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->category);
         request()->validate([
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|string',
             'status' => 'required|int',
-            'user_id' => 'required|int',
-            'category_id' => 'required|int',
+            'category' => 'required|int',
             'has_points' => 'required|int',
             'replace_points' => 'required|int',
             'status' => 'required|int',
@@ -59,9 +63,20 @@ class ProductController extends Controller
             'tags' => 'nullable|string',
         ]);
 
-
-        Product::create($request->all());
-
+        // Store in the database
+        $product = new Product;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->has_points = $request->has_points;
+        $product->replace_points = $request->replace_points;
+        $product->price = $request->price;
+        $product->country_made = $request->country;
+        $product->user_id = auth()->user()->id;
+        $product->status = $request->status;
+        $product->rating = $request->rating;
+        $product->tags = $request->tags;
+        $product->category_id = $request->category;
+        $product->save();
 
         Session::flash('success', 'The Product was successfully Save!');
         return redirect('product');
@@ -91,7 +106,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.product.edit',compact('product'));
+        $product = Product::find($id);
+        $categories = Category::where('parent', '=', 0)->get();
+        $childCategories = Category::where('parent', '!=', 0)->get();
+
+//        dd($allCategories);
+        return view('admin.product.edit')->with(['product'=>$product , 'categories' => $categories , 'childCategories' => $childCategories]);
     }
 
 
@@ -102,15 +122,14 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
         request()->validate([
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|string',
             'status' => 'required|int',
-            'user_id' => 'required|int',
-            'category_id' => 'required|int',
+            'category' => 'required|int',
             'has_points' => 'required|int',
             'replace_points' => 'required|int',
             'status' => 'required|int',
@@ -118,12 +137,23 @@ class ProductController extends Controller
             'tags' => 'nullable|string',
         ]);
 
+        // Update in the database
+        $product = Product::find($id);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->has_points = $request->has_points;
+        $product->replace_points = $request->replace_points;
+        $product->price = $request->price;
+        $product->country_made = $request->country;
+        $product->user_id = auth()->user()->id;
+        $product->status = $request->status;
+        $product->rating = $request->rating;
+        $product->tags = $request->tags;
+        $product->category_id = $request->category;
+        $product->save();
 
-        $product->update($request->all());
-
-
-        return redirect()->route('admin.product.index')
-            ->with('success','Product updated successfully');
+        Session::flash('success', 'The Product was successfully Updated!');
+        return redirect('product');
     }
 
 
@@ -133,9 +163,12 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
+        $product = Product::find($id);
         $product->delete();
-        return redirect()->route('admin.product.index')->with('success','Product deleted successfully');
+
+        Session::flash('success', 'Product was successfully deleted.');
+        return redirect('/product');
     }
 }

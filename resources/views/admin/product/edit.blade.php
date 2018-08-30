@@ -10,13 +10,7 @@
         <div class="form-group form-group-lg">
             <label class="col-sm-2 control-label">Name</label>
             <div class="col-sm-10 col-md-6">
-                <input
-                        type="text"
-                        name="name"
-                        class="form-control"
-                        required="required"
-                        placeholder="Name of The product"
-                        value="{{ $product->name }}" />
+                <input type="text" name="name" class="form-control" required="required" placeholder="Name of The product" value="{{ $product->name }}" />
             </div>
         </div>
         <!-- End Name Field -->
@@ -24,13 +18,7 @@
         <div class="form-group form-group-lg">
             <label class="col-sm-2 control-label">Description</label>
             <div class="col-sm-10 col-md-6">
-                <input
-                        type="text"
-                        name="description"
-                        class="form-control"
-                        required="required"
-                        placeholder="Description of The product"
-                        value="{{ $product->description }}" />
+                <input type="text" name="description" class="form-control" required="required" placeholder="Description of The product" value="{{ $product->description }}" />
             </div>
         </div>
         <!-- End Description Field -->
@@ -38,27 +26,44 @@
         <div class="form-group form-group-lg">
             <label class="col-sm-2 control-label">Price</label>
             <div class="col-sm-10 col-md-6">
-                <input
-                        type="text"
-                        name="price"
-                        class="form-control"
-                        required="required"
-                        placeholder="Price of The product"
-                        value="{{ $product->price }}" />
+                <input type="text" name="price" class="form-control" required="required" placeholder="Price of The product" value="{{ $product->price }}" />
             </div>
         </div>
         <!-- End Price Field -->
+
+        <!-- Start Rating  Field -->
+        <div class="form-group form-group-lg">
+            <label class="col-sm-2 control-label">Rating | (From 1 : 10)</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="number" name="rating" class="form-control" required="required" value="{{$product->rating}}" placeholder="Rating of The product" min='0' max='10'/>
+            </div>
+        </div>
+        <!-- End Rating Field -->
+
+        <!-- Start Has Points Field -->
+        <div class="form-group form-group-lg">
+            <label class="col-sm-2 control-label">Has Points</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="number" name="has_points" class="form-control" required="required" value="{{$product->has_points}}" placeholder="Points of The product" />
+            </div>
+        </div>
+        <!-- End Has Points Field -->
+
+        <!-- Start Replace Points Field -->
+        <div class="form-group form-group-lg">
+            <label class="col-sm-2 control-label">Replace Points</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="number" name="replace_points" class="form-control" required="required" value="{{$product->replace_points}}" placeholder="Replace Points of The product" />
+            </div>
+        </div>
+        <!-- End Replace Points Field -->
+
+
         <!-- Start Country Field -->
         <div class="form-group form-group-lg">
             <label class="col-sm-2 control-label">Country</label>
             <div class="col-sm-10 col-md-6">
-                <input
-                        type="text"
-                        name="country"
-                        class="form-control"
-                        required="required"
-                        placeholder="Country of Made"
-                        value="{{ $product->country_made }}" />
+                <input type="text" name="country" class="form-control" required="required" placeholder="Country of Made" value="{{ $product->country_made }}" />
             </div>
         </div>
         <!-- End Country Field -->
@@ -67,28 +72,27 @@
             <label class="col-sm-2 control-label">Status</label>
             <div class="col-sm-10 col-md-6">
                 <select name="status">
-                    <option value="1" @if($product->status == 1) selected @endif> New</option>
-                    <option value="2" @if($product->status == 2) selected @endif> Like New</option>
-                    <option value="3" @if($product->status == 3) selected @endif> Used</option>
-                    <option value="4" @if($product->status == 4) selected @endif>Very Old</option>
+                    <option value="1" @if($product->status == 1) selected @endif> Active</option>
+                    <option value="0" @if($product->status == 0) selected @endif> Hidden</option>
+
                 </select>
             </div>
         </div>
         <!-- End Status Field -->
-        <!-- Start Members Field -->
-        <div class="form-group form-group-lg">
-            <label class="col-sm-2 control-label">Member</label>
-            <div class="col-sm-10 col-md-6">
-                <select name="member">
+        {{--<!-- Start Members Field -->--}}
+        {{--<div class="form-group form-group-lg">--}}
+            {{--<label class="col-sm-2 control-label">Member</label>--}}
+            {{--<div class="col-sm-10 col-md-6">--}}
+                {{--<select name="member">--}}
 
-                    @foreach($users as $user)
-                        <option value="{{ $user->id }}" @if($product->member_id == $user->id) selected @endif>{{ $user->name }}</option>
-                    @endforeach
+                    {{--@foreach($users as $user)--}}
+                        {{--<option value="{{ $user->id }}" @if($product->member_id == $user->id) selected @endif>{{ $user->name }}</option>--}}
+                    {{--@endforeach--}}
 
-                </select>
-            </div>
-        </div>
-        <!-- End Members Field -->
+                {{--</select>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<!-- End Members Field -->--}}
         <!-- Start Categories Field -->
         <div class="form-group form-group-lg">
             <label class="col-sm-2 control-label">Category</label>
@@ -97,7 +101,7 @@
                     <option value="0">...</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}" @if($product->category_id == $category->id) selected @endif>{{ $category->name }}</option>
-                        @foreach($childcategories as $childCategory)
+                        @foreach($childCategories as $childCategory)
                             @if($childCategory->parent == $category->id)
                                 <option value="{{ $childCategory->id }}" @if($product->category_id == $childCategory->id) selected @endif >{{ $childCategory->name }}</option>
                             @endif
@@ -111,12 +115,7 @@
         <div class="form-group form-group-lg">
             <label class="col-sm-2 control-label">Tags</label>
             <div class="col-sm-10 col-md-6">
-                <input
-                        type="text"
-                        name="tags"
-                        class="form-control"
-                        placeholder="Separate Tags With Comma (,)"
-                        value="{{ $product->tags }}" />
+                <input type="text" name="tags" class="form-control" placeholder="Separate Tags With Comma (,)" value="{{ $product->tags }}" />
             </div>
         </div>
         <!-- End Tags Field -->
@@ -129,41 +128,6 @@
         <!-- End Submit Field -->
     </form>
 
-
-{{--//    if (! empty($rows)) {--}}
-
-    <h1 class="text-center">Manage Comments</h1>
-    <div class="table-responsive">
-        <table class="main-table text-center table table-bordered">
-            <tr>
-                <td>Comment</td>
-                <td>User Name</td>
-                <td>Added Date</td>
-                <td>Control</td>
-            </tr>
-
-{{--//            foreach(#comments as $comment) {--}}
-
-                <tr>
-                <td>comment</td>
-                <td>Member</td>
-                <td>comment_date</td>
-                <td>
-											<a href='comments.php?do=Edit&comid=' class='btn btn-success'><i class='fa fa-edit'></i> Edit</a>
-											<a href='comments.php?do=Delete&comid=' class='btn btn-danger confirm'><i class='fa fa-close'></i> Delete </a>
-{{--//                /**/if ($row['status'] == 0) --}}
-                    <a href='comments.php?do=Approve&comid='class='btn btn-info activate'>
-														<i class='fa fa-check'></i> Approve</a>
-                </td>
-                </tr>
-            <tr>
-        </table>
-    </div>
 </div>
-			{{--// If There's No Such ID Show Error Message--}}
-            <div class='container'>
-				<div class="alert alert-danger">Theres No Such ID</div>
-			</div>
-
 
 @endsection

@@ -49,7 +49,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->category);
         request()->validate([
             'name' => 'required',
             'description' => 'required',
@@ -61,7 +60,10 @@ class ProductController extends Controller
             'status' => 'required|int',
             'rating' => 'required|int',
             'tags' => 'nullable|string',
+            'image' =>'required|image',
         ]);
+//        dd($request->image);
+
 
         // Store in the database
         $product = new Product;
@@ -76,6 +78,19 @@ class ProductController extends Controller
         $product->rating = $request->rating;
         $product->tags = $request->tags;
         $product->category_id = $request->category;
+
+      //  dd($request->file('image'));
+        if ($request->hasFile('image')) {
+            //dd($request->image);
+
+            $image = $request->file('image');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+
+            $product->image = $name;
+            //dd($new->image);
+        }
         $product->save();
 
         Session::flash('success', 'The Product was successfully Save!');
@@ -150,6 +165,17 @@ class ProductController extends Controller
         $product->rating = $request->rating;
         $product->tags = $request->tags;
         $product->category_id = $request->category;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+
+            $product->image = $name;
+            //dd($new->image);
+        }
+
         $product->save();
 
         Session::flash('success', 'The Product was successfully Updated!');

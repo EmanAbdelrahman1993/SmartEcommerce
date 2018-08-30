@@ -119,6 +119,17 @@
             </div>
         </div>
         <!-- End Tags Field -->
+
+        <!-- Start Image Field -->
+        <div class="form-group form-group-lg">
+            <label class="col-sm-2 control-label">Image</label>
+            <img src="{{url('/images/'.$product->image)}}" />
+            <div class="col-sm-10 col-md-6">
+                <input type="file" class="form-control" name="image"/>
+            </div>
+        </div>
+        <!-- End Image Field -->
+
         <!-- Start Submit Field -->
         <div class="form-group form-group-lg">
             <div class="col-sm-offset-2 col-sm-10">

@@ -3,7 +3,7 @@
 
 <h1 class="text-center">Add New product</h1>
 <div class="container">
-    <form class="form-horizontal" action="{{ route('product.store') }}" method="POST">
+    <form class="form-horizontal" action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
         <!-- Start Name Field -->
         <div class="form-group form-group-lg">
@@ -116,6 +116,17 @@
             </div>
         </div>
         <!-- End Tags Field -->
+
+            <!-- Start Image Field -->
+            <div class="form-group form-group-lg">
+                <label class="col-sm-2 control-label">Image</label>
+                <div class="col-sm-10 col-md-6">
+                    <input type="file" class="form-control" name="image" required/>
+                </div>
+            </div>
+            <!-- End Image Field -->
+
+
         <!-- Start Submit Field -->
         <div class="form-group form-group-lg">
             <div class="col-sm-offset-2 col-sm-10">

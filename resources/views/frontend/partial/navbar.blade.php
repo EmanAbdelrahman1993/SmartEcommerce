@@ -30,7 +30,7 @@
                     </form>
                 </div >
             </li>
-            <li><a href="products.html">Our collection</a></li>
+            <li><a href="{{url('/products')}}">Our collection</a></li>
             <li><a href="products.html">Top products </a></li>
             <li><a href="products.html">Best sellers</a></li>
             <li><a href="products.html">Gifts</a></li>

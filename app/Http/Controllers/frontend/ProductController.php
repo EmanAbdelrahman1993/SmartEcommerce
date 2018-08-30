@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\frontend;
 
-use App\Item;
+use App\Http\Controllers\Controller;
+
+use App\Product;
 use Illuminate\Http\Request;
 
-class ItemController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,29 +16,11 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::orderBy('id', 'asc')->paginate(8);
+
+        return view('frontend.product.index')->with('products',$products);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -46,7 +30,8 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        return view('frontend.product.show')->with('product',$product);
     }
 
     /**

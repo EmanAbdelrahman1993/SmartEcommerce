@@ -1,46 +1,52 @@
 <?php
 
 namespace App\Http\Controllers\frontend;
-use App\Http\Controllers\Controller;
 
 use App\User;
 use App\Order;
-use App\OrderDetails;
+use App\Product;
 use Session;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\OrderDetails;
 use Response;
 
-
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     public function orderNow(Request $request)
     {
         if (Session::has('cart')) {
-            //dd(session()->get('cart'));
             $price = 0;
-            foreach (session()->get('cart') as $order)
-                $price = $price + $order[4];
+            $total_gives_points = 0;
+            $total_replace_points = 0;
 
+
+            foreach (Session::get('cart') as $order) {
+                //dd($order);
+                $price = $price + $order[3];
+                //dd($price);
+                $total_gives_points = $total_gives_points + $order[4];
+                $total_replace_points = $total_replace_points + $order[5];
+
+
+            }
+            //dd($total_replace_points);
 
 
         }
 
         $obj = new Order();
-
         $obj->user_id = auth()->user()->id;
-
         $obj->order_status = "pending";
-        $obj->user_address= $request->address;
-        $obj->mobile = $request->mobile;
-        $obj->total_price_of_orders = $price;
         $obj->save();
 
         //dd($obj->id);
 
 
         if (Session::has('cart')) {
-            foreach (session()->get('cart') as $order)
+            foreach (Session::get('cart') as $order)
+                dd($order);
                 $arr[] =$order;
                 //dd($arr);
                 //dd( count($arr));
@@ -68,5 +74,13 @@ class OrderController extends Controller
     public function orderDetails()
     {
         return view('order.details');
+    }
+
+    public function viewOrders()
+    {
+        $user_id = auth()->user()->id;
+        $orders = Order::where('user_id',$user_id);
+        return view('frontend.order.index')->with('orders',$orders);
+
     }
 }

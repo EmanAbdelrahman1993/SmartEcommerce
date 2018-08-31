@@ -18,10 +18,7 @@ class CreateOrderTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->enum('order_status',['active','pending','deactive']);
-            $table->text('user_address');
-            $table->bigInteger('mobile');
-            $table->integer('total_price_of_orders');
-            $table->timestamps();
+             $table->timestamps();
         });
     }
 

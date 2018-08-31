@@ -61,21 +61,10 @@ class UserController extends Controller
 
     public function view_cart()
     {
-        $user_id = auth()->user()->id;
-        if (Session::has('cart')) {
-           // dd(session()->get());
-            foreach (session()->get('cart') as $order)
-
-                $carts = [$order];
-
-        }
-
-        return view('frontend.cart')->with('carts',$carts);
-
+        return view('frontend.cart');
     }
     public function add_to_cart(Request $request , $id)
     {
-        //session()->put('cart', []);
         $product = Product::find($id);
         $qty = $request->quantity;
 
@@ -91,19 +80,14 @@ class UserController extends Controller
 
         $total_replacement_points = $replacement_points * $qty;
 
-        $data =[$product->id , $qty  , $price , $total_price , $total_has_points , $total_replacement_points];
-        //dd($data);
+        $data = collect([$product->name , $qty  , $price , $total_price , $total_has_points , $total_replacement_points]);
 
-        session()->push('cart', $data);
+        Session::push('cart', $data);
+
+        //dd(Session::get('cart'));
 
         return redirect('/cart');
     }
 
-    public function viewOrders()
-    {
-        $user_id = auth()->user()->id;
-        $orders = Order::where('user_id',$user_id);
-        return view('frontend.order.index')->with('orders',$orders);
 
-    }
 }

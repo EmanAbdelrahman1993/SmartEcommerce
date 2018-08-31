@@ -35,7 +35,7 @@ Route::group(['middleware' => 'role:super-admin'], function() {
     Route::get('comment/{id}/approve','Admin\CommentController@approve');
     Route::get('comment/{id}/close','Admin\CommentController@close');
 
-    Route::resource('order', 'Admin\OrderController');
+    //Route::resource('order', 'Admin\OrderController');
 
 
 
@@ -48,9 +48,9 @@ Route::get('/admin','Admin\AdminController@index');
 
 
 Route::resource('products', 'frontend\ProductController');
-Route::post('/order', 'OrderController@orderNow');
+Route::get('/order', 'frontend\OrderController@orderNow');
 Route::get('/order_details', 'OrderController@orderDetails');
-Route::get('/viewOrders', 'frontend\UserController@viewOrders');
+Route::get('/viewOrders', 'frontend\OrderController@viewOrders');
 Route::get('/cart', 'frontend\UserController@view_cart');
 Route::post('/add_to_cart/{id}', 'frontend\UserController@add_to_cart');
 

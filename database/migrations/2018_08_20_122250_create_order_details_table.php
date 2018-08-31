@@ -22,7 +22,11 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('quantity');
             $table->integer('price');
             $table->integer('total_price');
-			$table->integer('total_points');
+			$table->integer('total_has_points');
+			$table->integer('total_replace_points');
+            $table->text('user_address');
+            $table->bigInteger('mobile');
+
             $table->timestamps();
         });
     }

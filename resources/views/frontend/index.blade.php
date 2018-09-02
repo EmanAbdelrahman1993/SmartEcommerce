@@ -16,120 +16,33 @@
                 <div class="slides">
                     <p>Last added products</p>
                     <ul class="item-list">
-                        <li>
-                            <div class="item">
-                                <div class="image">
-                                    <a href="#"><img src="{{url('/')}}/frontend/images/pic_carusel_01.png"  alt="" /></a>
-                                    <div class="hover">
-                                        <p>Perspiciatis unde omnis iste natus voluptatem</p>
-                                        <strong>$55.00</strong>
+                        @if($last_added_products)
+                            @foreach($last_added_products as $product)
+                                <li>
+                                    <div class="item">
+                                        <div class="image">
+                                            <a href="#"><img src="{{url('/')}}/images/{{$product->image}}"  alt="aaaaaaa" /></a>
+                                            <div class="hover">
+                                                <p>{{$product->name}}</p>
+                                                <strong>{{$product->price}}</strong>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <div class="image">
-                                    <a href="#"><img src="{{url('/')}}/frontend/images/pic_carusel_02.jpg"  alt="" /></a>
-                                    <div class="hover">
-                                        <p>Perspiciatis unde omnis iste natus voluptatem</p>
-                                        <strong>$55.00</strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <div class="image">
-                                    <a href="#"><img src="{{url('/')}}/frontend/images/pic_carusel_03.jpg"  alt="" /></a>
-                                    <div class="hover">
-                                        <p>Perspiciatis unde omnis iste natus voluptatem</p>
-                                        <strong>$55.00</strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <div class="image">
-                                    <a href="#"><img src="{{url('/')}}/frontend/images/pic_carusel_02_2.jpg"  alt="" /></a>
-                                    <div class="hover">
-                                        <p>Perspiciatis unde omnis iste natus voluptatem</p>
-                                        <strong>$55.00</strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="last">
-                            <div class="item">
-                                <div class="image">
-                                    <a href="#"><img src="{{url('/')}}/frontend/images/pic_carusel_02_2.jpg"  alt="" /></a>
-                                    <div class="hover">
-                                        <p>Perspiciatis unde omnis iste natus voluptatem</p>
-                                        <strong>$55.00</strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <div class="image">
-                                    <a href="#"><img src="{{url('/')}}/frontend/images/pic_carusel_02_2.jpg"  alt="" /></a>
-                                    <div class="hover">
-                                        <p>Perspiciatis unde omnis iste natus voluptatem</p>
-                                        <strong>$55.00</strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <div class="image">
-                                    <a href="#"><img src="{{url('/')}}/frontend/images/pic_carusel_03.jpg"  alt="" /></a>
-                                    <div class="hover">
-                                        <p>Perspiciatis unde omnis iste natus voluptatem</p>
-                                        <strong>$55.00</strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <div class="image">
-                                    <a href="#"><img src="{{url('/')}}/frontend/images/pic_carusel_02_2.png"  alt="" /></a>
-                                    <div class="hover">
-                                        <p>Perspiciatis unde omnis iste natus voluptatem</p>
-                                        <strong>$55.00</strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="item">
-                                <div class="image">
-                                    <a href="#"><img src="{{url('/')}}/frontend/images/pic_carusel_03.png"  alt="" /></a>
-                                    <div class="hover">
-                                        <p>Perspiciatis unde omnis iste natus voluptatem</p>
-                                        <strong>$55.00</strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="last">
-                            <div class="item">
-                                <div class="image">
-                                    <a href="#"><img src="{{url('/')}}/frontend/images/pic_carusel_02.png"  alt="" /></a>
-                                    <div class="hover">
-                                        <p>Perspiciatis unde omnis iste natus voluptatem</p>
-                                        <strong>$55.00</strong>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                                </li>
+
+                                @endforeach
+                            @else
+                            <p>No Product to View !</p>
+                            @endif
                     </ul>
                 </div>
                 <a href="#" class="btn-right"></a>
             </div>
+
+
+
+
+
         </section>
         <div class="block-advice">
             <div class="advice-holder">
@@ -142,10 +55,13 @@
                 </fieldset>
             </form>
         </div>
-        <div class="banner_box">
-            <p>Take a part in our competition</p>
-            <span>and get 80% discount for shopping</span>
+
+        <div class="checkout">
+            <span>{{$product_no}} Products | <span class="pink">{{$total_price}} $</span></span>
+            <a href="{{url('/cart')}}" class="btn btn_checkout">Checkout</a>
         </div>
+
+
         <div class="clear"></div>
 
     @stop

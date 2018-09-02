@@ -31,10 +31,14 @@
             @endguest
 
         </ul>
-        <div class="checkout">
-            <span>3 products, <span class="pink">$380,50</span></span>
-            <a href="{{url('/cart')}}" class="btn btn_checkout">Checkout</a>
+
+
+
+        <div class="banner_box">
+            <p>Take a part in our competition</p>
+            <span>and get 80% discount for shopping</span>
         </div>
+
     </div>
     <div class="clear"></div>
     <a class="menu_trigger" href="#">menu</a>
@@ -51,14 +55,15 @@
                 </div >
             </li>
             <li><a href="{{url('/products')}}">Our collection</a></li>
-            <li><a href="#">Top products </a></li>
+            <li><a href="{{url('/home')}}">Top products </a></li>
             <li><a href="{{url('/cart')}}">Your Cart</a></li>
             <li><a href="{{url('/viewOrders')}}">Your Order</a></li>
             <li><a href="#">Promotions</a></li>
         </ul>
         <div  class="ul_search">
             <a class="search" href="#"><span>search</span></a>
-            <form method="get" class="searchform" action="#">
+            <form method="get" class="searchform" action="{{url('/search')}}" method="post">
+                @csrf
                 <input type="text" class="field" name="s" id="s" placeholder="What are you looking for?" />
                 <input type="submit" class="submit" value=""  />
             </form>

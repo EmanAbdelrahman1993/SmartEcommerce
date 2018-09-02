@@ -179,8 +179,8 @@ a:hover{text-decoration:underline;}
 	line-height: 18px;
 }
 .checkout{
-	float:left;
-	border: 2px solid #dad3c8;
+	float:right;
+	border: 3px solid #dad3c8;
 	padding: 7px;
 	border-radius: 6px;
 	behavior: url(css/PIE.htc);

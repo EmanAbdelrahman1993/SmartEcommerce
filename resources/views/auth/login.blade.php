@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+                    <br method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -55,27 +55,32 @@
                                 </div>
                             </div>
                         </div>
+                    </br></br>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-12 offset-md-3">
+                        {{--<div class="input-group">--}}
+                            {{--<span class="input-group-addon"><i class="fa fa-envelope fa-lg"></i></span>--}}
+                        {{--</div>--}}
 
-                            </br>
-                                <a href="{{ url('auth/google') }}" class="btn btn-danger">Login With Google</a>
+
+
+                                </br>
                                 <a href="{{ url('auth/facebook') }}" class="btn btn-primary">Login With Facebook</a>
 
+                                </br>
                                 <a href="{{ url('auth/github') }}" class="btn btn-info">Login With Github</a>
+                                </br>
 
-                            </br>
+                                <a href="{{ url('auth/google') }}" class="btn btn-info">Login With Google Account</a>
+                                </br>
 
-
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                            <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                             </div>
                         </div>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>

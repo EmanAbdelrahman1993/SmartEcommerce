@@ -19,8 +19,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('frontend.index');
+            $total_price = 0;
+            $product_no = 0;
+            if(Session::has('cart')) {
+                $product_no = count(Session::get('cart'));
+                foreach (Session::get('cart') as $product) {
+                    $total_price = $total_price + $product[4];
+                }
+            }
 
+            $last_added_products = Product::orderBy('id', 'DESC')->get();
+
+            return view('frontend.index')->with(['product_no'=>$product_no,'total_price'=>$total_price , 'last_added_products'=>$last_added_products]);
     }
 
     /**
@@ -87,6 +97,21 @@ class UserController extends Controller
         //dd(Session::get('cart'));
 
         return redirect('/cart');
+    }
+
+    public function search(Request $request)
+    {
+        $this->validate($request,[
+
+            's'=>'required',
+        ]);
+
+        $queryData = Product::where('name', 'like', '%'.$request['s'].'%' )
+            ->orWhere('description','like','%'.$request['s'].'%')->get();
+//
+//        dd($queryData);
+
+        return view('frontend.product.index')->with('queryData',$queryData);
     }
 
 

@@ -10,17 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('frontend.index');
-});
-
 Auth::routes();
 
-Route::get('/home', function ()
-{
-    return view('frontend.index');
-});
+Route::get('/','frontend\UserController@index');
+Route::get('/home','frontend\UserController@index');
 Route::get('/index','frontend\UserController@index');
 
 //Login with Github,Facebook,Google Account
@@ -46,18 +39,23 @@ Route::group(['middleware' => 'role:super-admin'], function() {
 });
 
 
+Route::group(['middleware' => 'auth'], function() {
+    Route::post('/order', 'frontend\OrderController@orderNow');
+    Route::get('/order_details', 'frontend\OrderController@orderDetails');
+    Route::get('/viewOrders', 'frontend\OrderController@viewOrders');
+    Route::get('/order/details/{id}','frontend\OrderController@viewOrderDetails');
+});
+
+
 Route::resource('products', 'frontend\ProductController');
 
 Route::get('/cart', 'frontend\UserController@view_cart');
+Route::get('/search', 'frontend\UserController@search');
 Route::post('/add_to_cart/{id}', 'frontend\UserController@add_to_cart');
 
 
 
-Route::post('/order', 'frontend\OrderController@orderNow');
-Route::get('/order_details', 'frontend\OrderController@orderDetails');
-Route::get('/viewOrders', 'frontend\OrderController@viewOrders');
 
-Route::get('/order/details/{id}','frontend\OrderController@viewOrderDetails');
 
 
 

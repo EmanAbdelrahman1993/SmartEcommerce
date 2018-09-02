@@ -33,8 +33,7 @@
                                     <td>{{$order->created_at}}</td>
                                     <td><a href='/order/details/{{ $order->id }}' class='btn btn-xs btn-primary'>View</a>
                                     </td>
-
-                            </tr>
+                                 </tr>
                             @endforeach
 
                         </tbody>

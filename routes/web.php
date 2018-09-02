@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 Auth::routes();
@@ -37,22 +37,27 @@ Route::group(['middleware' => 'role:super-admin'], function() {
 
     //Route::resource('order', 'Admin\OrderController');
 
+    Route::resource('admin/permission', 'Admin\PermissionController');
+    Route::resource('admin/role', 'Admin\RoleController');
+    Route::resource('admin/user', 'Admin\UserController');
+    Route::get('/admin','Admin\AdminController@index');
 
 
 });
 
-Route::resource('admin/permission', 'Admin\PermissionController');
-Route::resource('admin/role', 'Admin\RoleController');
-Route::resource('admin/user', 'Admin\UserController');
-Route::get('/admin','Admin\AdminController@index');
-
 
 Route::resource('products', 'frontend\ProductController');
-Route::get('/order', 'frontend\OrderController@orderNow');
-Route::get('/order_details', 'OrderController@orderDetails');
-Route::get('/viewOrders', 'frontend\OrderController@viewOrders');
+
 Route::get('/cart', 'frontend\UserController@view_cart');
 Route::post('/add_to_cart/{id}', 'frontend\UserController@add_to_cart');
+
+
+
+Route::post('/order', 'frontend\OrderController@orderNow');
+Route::get('/order_details', 'frontend\OrderController@orderDetails');
+Route::get('/viewOrders', 'frontend\OrderController@viewOrders');
+
+Route::get('/order/details/{id}','frontend\OrderController@viewOrderDetails');
 
 
 

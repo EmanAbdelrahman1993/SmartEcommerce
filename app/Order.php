@@ -10,15 +10,6 @@ class Order extends Model
 {
 
     protected $table='order';
-  /*  protected $fillable=[
-        'user_id',
-        'order_status',
-        'user_address',
-        'mobile',
-        'total_price_of_orders',
-
-    ];
-*/
 
     public function User()
     {

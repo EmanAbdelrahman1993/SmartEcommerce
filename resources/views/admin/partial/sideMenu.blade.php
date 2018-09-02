@@ -78,6 +78,13 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="/home">
+                <i class="menu-icon mdi mdi-tag-faces"></i>
+                <span class="menu-title">Front End View</span>
+            </a>
+        </li>
+
         {{--<li class="nav-item">--}}
             {{--<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">--}}
                 {{--<i class="menu-icon mdi mdi-restart"></i>--}}

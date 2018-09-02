@@ -9,6 +9,7 @@
                     <div class=" card-header"><h3>Your Orders</h3></div>
 
                     <div class="table-responsive">
+                        @if(count($orders) >0)
                         <table class="main-table text-center table table-bordered">
                         <thead>
                         <tr>
@@ -17,23 +18,35 @@
                                  Order #
                             </td>
                             <td>Order Status</td>
-                            <td>Total Price Of Order</td>
+                            <td>Created At</td>
                             <td>View Details</td>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($orders as $order)
-                            <tr>
 
-                                <td>{{$order->id}}</td>
-                                <td>{{$order->order_status}}</td>
-                                <td>{{$order->total_price_of_orders}}</td>
-                                <td></td>
+
+                            @foreach($orders as $order)
+                                <tr>
+
+                                    <td>{{$order->id}}</td>
+                                    <td>{{$order->order_status}}</td>
+                                    <td>{{$order->created_at}}</td>
+                                    <td><a href='/order/details/{{ $order->id }}' class='btn btn-xs btn-primary'>View</a>
+                                    </td>
 
                             </tr>
-                        @endforeach
+                            @endforeach
+
                         </tbody>
                     </table>
+                        @else
+                            <div class="alert alert-danger">
+                                <p class="text-center">
+                                <h1>No Orders YOu Make <a href="{{url('products')}}">Shopping Now !</a> </h1>
+                                </p>
+                            </div>
+
+                        @endif
                     </div>
                 </div>
 

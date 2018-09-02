@@ -3,12 +3,32 @@
     <span class="logo"><a href="{{url('/home')}}">Bambino</a></span>
     <div class="tools-nav_holder">
         <ul class="tools-nav">
-            <li><a href="#">{!! Auth::user()->name !!}</a></li>
-            <li class="login"><a href="{{ route('logout') }}" onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a></li>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+            @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+            @else
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}  - {{Auth::user()->email}}<span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+            @endguest
 
         </ul>
         <div class="checkout">
@@ -31,10 +51,10 @@
                 </div >
             </li>
             <li><a href="{{url('/products')}}">Our collection</a></li>
-            <li><a href="products.html">Top products </a></li>
+            <li><a href="#">Top products </a></li>
             <li><a href="{{url('/cart')}}">Your Cart</a></li>
-            <li><a href="products.html">Gifts</a></li>
-            <li><a href="products.html">Promotions</a></li>
+            <li><a href="{{url('/viewOrders')}}">Your Order</a></li>
+            <li><a href="#">Promotions</a></li>
         </ul>
         <div  class="ul_search">
             <a class="search" href="#"><span>search</span></a>

@@ -80,7 +80,7 @@ class UserController extends Controller
 
         $total_replacement_points = $replacement_points * $qty;
 
-        $data = collect([$product->name , $qty  , $price , $total_price , $total_has_points , $total_replacement_points]);
+        $data = collect([$product->id , $product->name , $qty  , $price , $total_price , $total_has_points , $total_replacement_points]);
 
         Session::push('cart', $data);
 

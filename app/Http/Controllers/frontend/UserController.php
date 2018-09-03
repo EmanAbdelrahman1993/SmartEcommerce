@@ -111,7 +111,7 @@ class UserController extends Controller
 //
 //        dd($queryData);
 
-        return view('frontend.product.index')->with('queryData',$queryData);
+        return view('frontend.search_result')->with('queryData',$queryData);
     }
 
 

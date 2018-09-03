@@ -37,7 +37,7 @@
                                 <p>
                                     @if( $category->status == 0) Status : <h5>Hidden</h5>@else Status : <h5>Active</h5>@endif
 
-                                @if($category->description == '') This category has no description @else Description : <h5> {{ $category->description }} </h5> @endif
+                                @if($category->description == '') This category has no description @else Description : <h5> {{substr($category->description,0,20)}} </h5> @endif
                                 </p>
                             </li>
 

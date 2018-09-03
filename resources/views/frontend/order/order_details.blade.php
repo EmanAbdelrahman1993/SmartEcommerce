@@ -45,11 +45,11 @@
                         <div class="col-md-6">{{$total_cost}}</div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">Total Cost of Order</div>
+                        <div class="col-md-3">Total Gives Points</div>
                         <div class="col-md-9">{{$total_has_points}}</div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">Total Cost of Order</div>
+                        <div class="col-md-3">Total Replacement Points</div>
                         <div class="col-md-9">{{$total_replace_points}}</div>
                     </div>
 

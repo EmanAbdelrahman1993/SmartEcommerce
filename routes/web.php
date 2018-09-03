@@ -44,6 +44,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/order_details', 'frontend\OrderController@orderDetails');
     Route::get('/viewOrders', 'frontend\OrderController@viewOrders');
     Route::get('/order/details/{id}','frontend\OrderController@viewOrderDetails');
+    Route::post('/products/add_comment/{id}','frontend\CommentController@addComment');
+    Route::resource('comments','frontend\CommentController');
+    Route::resource('orders','frontend\OrderController');
+
 });
 
 

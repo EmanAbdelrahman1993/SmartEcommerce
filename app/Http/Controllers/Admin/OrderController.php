@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\Comment;
+use App\Order;
+use App\OrderDetails;
+use App\Product;
 use Auth;
 use Session;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +18,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::all();
-        return view('admin.comment.index')->with('comments',$comments);
+        $orders = Order::all();
+        return view('admin.comment.index')->with('orders',$orders);
     }
 
     /**
@@ -84,34 +86,34 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        $comment = Comment::find($id);
-        $comment->delete();
-        Session::flash('success', 'The Comment was successfully deleted.');
-        return redirect('/comment');
+        $order = Order::find($id);
+        $order->delete();
+        Session::flash('success', 'The Order was successfully deleted.');
+        return redirect('orders');
 
     }
 
     public function approve($id)
     {
-        $comment = Comment::find($id);
+        $order = Order::find($id);
         //dd($comment);
-        $comment->status = 1;
-        $comment->save();
+        $order->order_status = 'Accepted';
+        $order->save();
 
-        Session::flash('success', 'Comment Status was successfully Approved.');
-        return redirect('/comment');
+        Session::flash('success', 'Order  was successfully Accepted.');
+        return redirect('orders');
 
     }
 
     public function close($id)
     {
-        $comment = Comment::find($id);
+        $order = Order::find($id);
         //dd($comment);
-        $comment->status = 0;
-        $comment->save();
+        $order->order_status = 'Cancelled';
+        $order->save();
 
-        Session::flash('success', 'Comment Status was successfully Closed.');
-        return redirect('/comment');
+        Session::flash('error', 'Order  was  Cancelled.');
+        return redirect('orders');
 
     }
 }

@@ -21,12 +21,11 @@
                                 <li>
                                     <div class="item">
                                         <div class="image">
-                                            <a href="#"><img src="{{url('/')}}/images/{{$product->image}}"  alt="aaaaaaa" /></a>
-                                            <div class="hover">
-                                                <p>{{$product->name}}</p>
-                                                <strong>{{$product->price}}</strong>
-                                            </div>
+                                            <img src="images/{{$product->image}}" height="42" width="42" alt="" />
                                         </div>
+                                        <span>{{$product->name}} - Price: {{$product->price}}</span>
+                                        <a href='/products/{{ $product->id }}' class='btn btn-xs btn-danger'>More</a>
+
                                     </div>
                                 </li>
 

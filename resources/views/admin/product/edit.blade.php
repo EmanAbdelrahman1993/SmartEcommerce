@@ -3,7 +3,7 @@
 
 <h1 class="text-center">Edit product</h1>
 <div class="container">
-    <form class="form-horizontal" action="{{ route('product.update', $product->id) }}" method="POST">
+    <form class="form-horizontal" action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
         <input type="hidden" name="_method" value="PATCH">
         <!-- Start Name Field -->

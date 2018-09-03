@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('frontend.master')
 @section('content')
 
     @if(empty($commment))
@@ -21,7 +21,7 @@
                     <td>{{ $comment->id }}</td>
                     <td>{{ $comment->user->name }}</td>
                     <td>{{ $comment->product->name }}</td>
-                    <td>{{substr($comment->comment,0,20)}}</td>
+                    <td>{{ $comment->comment }}</td>
                     <td>@if($comment->status == 1) Active @elseif($comment->status == 0) Disactive @endif</td>
                     <td>{{ $comment->created_at }}</td>
                     <td>

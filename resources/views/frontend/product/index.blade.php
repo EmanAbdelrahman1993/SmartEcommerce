@@ -39,8 +39,8 @@
 
     </div>
     <ul class="item-product">
-        @if($queryData)
-           @foreach($queryData as $product)
+        @if($products)
+           @foreach($products as $product)
                     <li>
                         <div class="item">
                             <div class="image">
@@ -53,27 +53,16 @@
                         </div>
                     </li>
             @endforeach
+               <center>
+                   {{$products->links()}}
+               </center>
+
         @else
-        @foreach($products as $product)
         <li>
             <div class="item">
-                <div class="image">
-                    <img src="images/{{$product->image}}"  alt="" />
-                </div>
-                <span class="name">{{$product->name}}</span>
-                <span>{{$product->price}}</span>
-                <a href='/products/{{ $product->id }}' class='btn btn-xs btn-danger'>More</a>
-
+                <p><h2>No Products To view</h2></p>
             </div>
         </li>
-        @endforeach
-
-
-
-        <center>
-            {{$products->links()}}
-        </center>
-
         @endif
     </ul>
 

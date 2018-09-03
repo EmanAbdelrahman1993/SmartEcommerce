@@ -60,7 +60,7 @@ class ProductController extends Controller
             'status' => 'required|int',
             'rating' => 'required|int',
             'tags' => 'nullable|string',
-            'image' =>'required|image',
+            'image' =>'required|image|dimensions:max_width=450,max_height=265',
         ]);
 //        dd($request->image);
 
@@ -139,6 +139,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->image);
         request()->validate([
             'name' => 'required',
             'description' => 'required',
@@ -150,7 +151,9 @@ class ProductController extends Controller
             'status' => 'required|int',
             'rating' => 'required|int',
             'tags' => 'nullable|string',
+            'image' =>'dimensions:max_width=450,max_height=265'
         ]);
+
 
         // Update in the database
         $product = Product::find($id);
@@ -166,7 +169,9 @@ class ProductController extends Controller
         $product->tags = $request->tags;
         $product->category_id = $request->category;
 
+        //dd($request->image);
         if ($request->hasFile('image')) {
+            //dd($request->image);
             $image = $request->file('image');
             $name = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/images');
@@ -175,7 +180,6 @@ class ProductController extends Controller
             $product->image = $name;
             //dd($new->image);
         }
-
         $product->save();
 
         Session::flash('success', 'The Product was successfully Updated!');

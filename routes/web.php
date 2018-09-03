@@ -27,9 +27,7 @@ Route::group(['middleware' => 'role:super-admin'], function() {
     Route::resource('comment', 'Admin\CommentController');
     Route::get('comment/{id}/approve','Admin\CommentController@approve');
     Route::get('comment/{id}/close','Admin\CommentController@close');
-
-    //Route::resource('order', 'Admin\OrderController');
-
+    Route::resource('order', 'Admin\OrderController');
     Route::resource('admin/permission', 'Admin\PermissionController');
     Route::resource('admin/role', 'Admin\RoleController');
     Route::resource('admin/user', 'Admin\UserController');

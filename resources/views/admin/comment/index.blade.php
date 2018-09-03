@@ -8,7 +8,7 @@
             <table class="main-table text-center table table-bordered">
                 <tr>
                     <td>ID</td>
-                    <td>UserNmae</td>
+                    <td>UserName</td>
                     <td>Product Name</td>
                     <td>Comment</td>
                     <td>Status</td>
@@ -36,7 +36,7 @@
                                  <form class="form-horizontal" action="{{ route('comment.destroy', $comment->id) }}" method="POST" style="display: inline;">
 
                                      <input name="_method" type="hidden" value="DELETE">
-                                     {{ csrf_field() }}
+                                     @csrf
 
                                     <input class="btn btn-danger btn  confirm" type="submit" value="Delete">
                                  </form>

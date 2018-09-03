@@ -19,7 +19,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
-        return view('admin.comment.index')->with('orders',$orders);
+        return view('admin.order.index')->with('orders',$orders);
     }
 
     /**
@@ -52,7 +52,23 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $orders_details = OrderDetails::where('order_id',$order->id)->get();
+
+        $total_cost = 0;
+        $total_has_points = 0;
+        $total_replace_points = 0;
+
+        foreach ($orders_details as $order_details)
+        {
+            $total_cost = $total_cost + $order_details['total_price'];
+            $total_has_points = $total_has_points + $order_details['total_has_points'];
+            $total_replace_points = $total_replace_points + $order_details['total_replace_points'];
+        }
+
+
+
+        return view('admin.order.show')->with(['order'=>$order , 'orders_details'=>$orders_details , 'total_cost'=>$total_cost , 'total_has_points'=> $total_has_points, 'total_replace_points'=> $total_replace_points]);
     }
 
     /**
@@ -61,9 +77,10 @@ class OrderController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        return view('admin.order.edit')->with('order',$order);
     }
 
     /**
@@ -73,9 +90,15 @@ class OrderController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, $id)
     {
-        //
+        //dd($request->status);
+        $order = Order::find($id);
+        $order->order_status = $request->status;
+        $order->save();
+        Session::flash('success', 'Status  was successfully Updated.');
+        return redirect('order');
+
     }
 
     /**

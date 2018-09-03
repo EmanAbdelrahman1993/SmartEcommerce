@@ -6,7 +6,7 @@
     <div class="container">
 
     <form class="form-horizontal" action="{{ route('comment.update', $comment->id) }}" method="POST">
-        {{ csrf_field() }}
+        @csrf
         <input type="hidden" name="_method" value="PATCH">
         <!-- Start Comment Field -->
         <div class="form-group form-group-lg">

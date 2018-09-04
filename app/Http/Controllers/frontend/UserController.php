@@ -109,6 +109,7 @@ class UserController extends Controller
         $queryData = Product::where('name', 'like', '%'.$request['s'].'%' )
             ->orWhere('description','like','%'.$request['s'].'%')->get();
 //
+        //->onWhere('price','like','%'.$request['s'].'%')
 //        dd($queryData);
 
         return view('frontend.search_result')->with('queryData',$queryData);

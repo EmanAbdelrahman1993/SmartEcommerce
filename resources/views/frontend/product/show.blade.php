@@ -48,7 +48,7 @@
                     <div id="tabs-3">
 
                         <div class="section">
-                            <form class="form-sort page" action="{{url('products/add_comment/'.$product->id)}}" method="post">
+                            <form class="form-sort page" action="{{url('/products/add_comment/'.$product->id)}}" method="post">
                                 @csrf
                                 <fieldset>
                                     <div class="row">

@@ -39,11 +39,13 @@ class CommentController extends Controller
      */
     public function addComment(Request $request, $product_id)
     {
-//        dd($request->all());
 
         $this->validate($request, array(
             'comment' => 'required|string',
         ));
+
+       // dd($request->all());
+
         // Store in the database
         $comment = new comment();
 

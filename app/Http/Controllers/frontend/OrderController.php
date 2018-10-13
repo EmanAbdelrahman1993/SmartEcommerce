@@ -59,7 +59,11 @@ class OrderController extends Controller
                 //}
             }
         }
-
+		
+		//destroy cart session
+		 Session::pull('cart');
+		
+		
         session()->flash('success','Order Added Successfully , We Will Accept It Soon !!');
         return redirect('/viewOrders');
 

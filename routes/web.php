@@ -28,12 +28,16 @@ Route::group(['middleware' => 'role:super-admin'], function() {
     Route::get('comment/{id}/approve','Admin\CommentController@approve');
     Route::get('comment/{id}/close','Admin\CommentController@close');
     Route::resource('order', 'Admin\OrderController');
-    Route::resource('admin/permission', 'Admin\PermissionController');
+	
+	//Manage Users, Roles , Permissions
+	
+	Route::resource('admin/permission', 'Admin\PermissionController');
     Route::resource('admin/role', 'Admin\RoleController');
     Route::resource('admin/user', 'Admin\UserController');
     Route::get('/admin','Admin\AdminController@index');
 
 
+    
 });
 
 
@@ -45,7 +49,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/products/add_comment/{id}','frontend\CommentController@addComment');
     Route::resource('comments','frontend\CommentController');
     Route::resource('orders','frontend\OrderController');
-
+	
 });
 
 

@@ -46,8 +46,8 @@
         <ul class="navi">
             <li class="searc_li" >
                 <div  class="ul_search li">
-                    <a class="search" href="#"><span>search</span></a>
-                    <form method="get" class="searchform" action="#">
+                    <a class="search" href="url{{('search')}}"><span>search</span></a>
+                    <form method="get" class="searchform" action="{{ url('search') }}">
                         <input type="text" class="field" name="s" id="s" placeholder="What are you looking for?" />
                         <input type="submit" class="submit" value=""  />
                         <div class="clear"></div>
